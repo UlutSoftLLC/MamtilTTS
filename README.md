@@ -2,7 +2,7 @@
 
 Кыргызча текстти аудиого айландыруу
 
-Kyrgyz Text-To-Speach
+Kyrgyz Text-To-Speech
 Models trained by Ulutsoft LLC.
 
 Эркек: [https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=drive_link](https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=sharing)
