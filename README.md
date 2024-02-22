@@ -2,9 +2,9 @@
 
 Кыргызча текстти аудиого айландыруу
 
-Эркек: https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=drive_link
+Эркек: [https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=drive_link](https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=sharing)
 
-Аял:   https://drive.google.com/file/d/1aaaspyNOYZGdoyWhkhUa6RMsCzIzu7fC/view?usp=drive_link
+Аял:   [https://drive.google.com/file/d/1aaaspyNOYZGdoyWhkhUa6RMsCzIzu7fC/view?usp=drive_link](https://drive.google.com/file/d/1aaaspyNOYZGdoyWhkhUa6RMsCzIzu7fC/view?usp=sharing)
 
 ## Орнотуу
 
