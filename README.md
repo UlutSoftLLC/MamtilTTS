@@ -2,6 +2,9 @@
 
 Кыргызча текстти аудиого айландыруу
 
+Kyrgyz Text-To-Speach
+Models trained by Ulutsoft LLC.
+
 Эркек: [https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=drive_link](https://drive.google.com/file/d/1tBs7ZVuGq3_jlsHCLT1zs_A4u-Lv7ggl/view?usp=sharing)
 
 Аял:   [https://drive.google.com/file/d/1aaaspyNOYZGdoyWhkhUa6RMsCzIzu7fC/view?usp=drive_link](https://drive.google.com/file/d/1aaaspyNOYZGdoyWhkhUa6RMsCzIzu7fC/view?usp=sharing)
@@ -24,32 +27,21 @@ pip install matcha-tts
 from source
 
 ```bash
-pip install git+https://github.com/shivammehta25/Matcha-TTS.git
-cd Matcha-TTS
+pip install git+https://github.com/ulutsotfllc/MamtilTTS.git
+cd MamtilTTS
 pip install -e .
 ```
 
 3. Run CLI / gradio app / jupyter notebook
 
-```bash
-# This will download the required models
-matcha-tts --text "<INPUT TEXT>"
-```
-
-or
-
-```bash
-matcha-tts-app
-```
-
-or open `synthesis.ipynb` on jupyter notebook
+open `synthesis.ipynb` on jupyter notebook
 
 ### CLI Arguments
 
 - To synthesise from given text, run:
 
 ```bash
-matcha-tts --text "<INPUT TEXT>"
+matcha-tts --text "<INPUT TEXT>" --checkpoint_path <PATH TO CHECKPOINT>
 ```
 
 - To synthesise from a file, run:
@@ -93,8 +85,8 @@ Let's assume we are training with LJ Speech
 2. Clone and enter the Matcha-TTS repository
 
 ```bash
-git clone https://github.com/shivammehta25/Matcha-TTS.git
-cd Matcha-TTS
+git clone https://github.com/ulutsotfllc/MamtilTTS.git
+cd MamtilTTS
 ```
 
 3. Install the package from source
