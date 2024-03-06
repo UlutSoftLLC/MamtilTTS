@@ -14,7 +14,17 @@ from matcha.utils.utils import intersperse
 
 def parse_filelist(filelist_path, split_char="|"):
     with open(filelist_path, encoding="utf-8") as f:
-        filepaths_and_text = [line.strip().split(split_char) for line in f]
+        # filepaths_and_text = [line.strip().split(split_char) for line in f]
+        filepaths_and_text = []
+        count_apper_200 = 0
+        for line in f:
+            tmp = line.strip().split(split_char)
+            tmp[0] = '/mnt/ks/Works/AudioTextMatching/audios/mono_22050/' + tmp[0]
+            if len(tmp[1]) > 220:
+                count_apper_200 += 1
+                continue
+            filepaths_and_text.append(tmp)
+        print('count_upper_220 = ', count_apper_200)
     return filepaths_and_text
 
 

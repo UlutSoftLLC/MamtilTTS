@@ -4,8 +4,8 @@ defaults:
 
 _target_: matcha.data.text_mel_datamodule.TextMelDataModule
 name: vctk
-train_filelist_path: data/filelists/vctk_audio_sid_text_train_filelist.txt
-valid_filelist_path: data/filelists/vctk_audio_sid_text_val_filelist.txt
+train_filelist_path:  /home/bektemir/Desktop/my_projects/matchaTTS/data/train.txt
+valid_filelist_path: /home/bektemir/Desktop/my_projects/matchaTTS/data/validate.txt
 batch_size: 32
 add_blank: True
 n_spks: 109

@@ -15,9 +15,7 @@ import logging
 import re
 
 import phonemizer
-import piper_phonemize
 from unidecode import unidecode
-
 # To avoid excessive logging we set the log level of the phonemizer package to Critical
 critical_logger = logging.getLogger("phonemizer")
 critical_logger.setLevel(logging.CRITICAL)
@@ -25,6 +23,7 @@ critical_logger.setLevel(logging.CRITICAL)
 # Intializing the phonemizer globally significantly reduces the speed
 # now the phonemizer is not initialising at every call
 # Might be less flexible, but it is much-much faster
+
 global_phonemizer = phonemizer.backend.EspeakBackend(
     language="en-us",
     preserve_punctuation=True,
@@ -33,34 +32,73 @@ global_phonemizer = phonemizer.backend.EspeakBackend(
     logger=critical_logger,
 )
 
-
+kyrgyz_phonemizer = phonemizer.backend.EspeakBackend(
+    language="ky",
+    preserve_punctuation=True,
+    with_stress=True,
+    language_switch="remove-flags",
+    logger=critical_logger,
+)
 # Regular expression matching whitespace:
 _whitespace_re = re.compile(r"\s+")
 
 # List of (regular expression, replacement) pairs for abbreviations:
+# ("mrs", "misess"),
+        # ("mr", "mister"),
+        # ("dr", "doctor"),
+        # ("st", "saint"),
+        # ("co", "company"),
+        # ("jr", "junior"),
+        # ("maj", "major"),
+        # ("gen", "general"),
+        # ("drs", "doctors"),
+        # ("rev", "reverend"),
+        # ("lt", "lieutenant"),
+        # ("hon", "honorable"),
+        # ("sgt", "sergeant"),
+        # ("capt", "captain"),
+        # ("esq", "esquire"),
+        # ("ltd", "limited"),
+        # ("col", "colonel"),
+        # ("ft", "fort"),
 _abbreviations = [
-    (re.compile("\\b%s\\." % x[0], re.IGNORECASE), x[1])
+    (re.compile(r"\b%s\b" % re.escape(x[0]), re.IGNORECASE), x[1])
     for x in [
-        ("mrs", "misess"),
-        ("mr", "mister"),
-        ("dr", "doctor"),
-        ("st", "saint"),
-        ("co", "company"),
-        ("jr", "junior"),
-        ("maj", "major"),
-        ("gen", "general"),
-        ("drs", "doctors"),
-        ("rev", "reverend"),
-        ("lt", "lieutenant"),
-        ("hon", "honorable"),
-        ("sgt", "sergeant"),
-        ("capt", "captain"),
-        ("esq", "esquire"),
-        ("ltd", "limited"),
-        ("col", "colonel"),
-        ("ft", "fort"),
+        
+        ("КТМУ", "Кыргыз-Түрк Манас университет"),
+        ("КР", "Кыргыз Республикасы"),
+        ("ж.б.", "жана башка"),
+        ("ЖИ", "Жасалма интеллект"),
+        ("БУУ", "Бириккен Улуттар Уюму"),
+        ("КМШ", "Көз карандысыз мамлекеттердин шериктештиги"),
+        ("ШКУ", "Шанхай кызматташтык уюму"),
+        ("ЕККУ", "Европа коопсуздук жана кызматташуу уюму"),
+        ("ЕБ", "Европалык Биримдик"),
+        ("ЕАЭБ", "Евразия экономика биримдиги"),
+        ("ЕККУ", "Европалык коопсуздук жана кызматташтык уюму"),
+        ("СССР", "Советтик Социалисттик Республикалар Союзу"),
+        ("ЭЭА", "Эркин экономикалык аймак"),
+        ("UNICEF", "Бириккен улуттар уюмунун балдар фондусу"),
+        ("USAID", "Америка кошмо штаттарынын эл аралык өнүктүрүү агенттиги"),
+        ("ИДП", "Ички дүӊ продукциясы"),
+        ("ЖЧК", "Жоопкерчилиги чектелген коом"),
+        ("ААК", "Ачык акционердик коому"),
+        ("БШК", "Борбордук шайлоо комиссиясы"),
+        ("ЖМК", "Жалпыга маалымдоо каражаттары"),
+        ("ЖАМК", "Жаза аткаруу мамлекеттик кызматы"),
+        ("УКМК", "Улуттук коопсуздук мамлекеттик комитети"),
+        ("ТИМ", "Тышкы иштер министрлиги"),
+        ("ӨКМ", "Өзгөчө кырдаалдар министрлиги"),
+        ("ИИМ", "Ички иштер министрлиги"),
+        ("ОИИБ", "Облустук ички иштер башкармалыгы"),
+        ("ШИИББ", "Шаардык ички иштер башкы башкармалыгы"),
+        ("РИИБ", "Райондук ички иштер башкармалыгы"),
+        ("ЧЧК", "Чоң Чүй каналы"),
+        ("F", "эф"),
+        ("KG", "Кейджи"),
     ]
 ]
+
 
 
 def expand_abbreviations(text):
@@ -105,12 +143,14 @@ def english_cleaners2(text):
     phonemes = collapse_whitespace(phonemes)
     return phonemes
 
-
-def english_cleaners_piper(text):
+def kygryz_cleaners2(text):
     """Pipeline for English text, including abbreviation expansion. + punctuation + stress"""
-    text = convert_to_ascii(text)
-    text = lowercase(text)
+    #print('Before: ', text)
+    #text = convert_to_ascii(text)
+    #print('After convert: ', text)
     text = expand_abbreviations(text)
-    phonemes = "".join(piper_phonemize.phonemize_espeak(text=text, voice="en-US")[0])
-    phonemes = collapse_whitespace(phonemes)
+    text = lowercase(text)
+    #phonemes = kyrgyz_phonemizer.phonemize([text], strip=True, njobs=1)[0]
+    phonemes = collapse_whitespace(text)
     return phonemes
+

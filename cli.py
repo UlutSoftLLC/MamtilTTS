@@ -225,7 +225,7 @@ def cli():
     parser.add_argument(
         "--checkpoint_path",
         type=str,
-        default='/home/bektemir/Desktop/MamtilTTS/checkpoints/checkpoint_epoch=279.ckpt',
+        default=None,
         help="Path to the custom model checkpoint",
     )
 

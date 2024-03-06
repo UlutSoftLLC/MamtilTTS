@@ -92,8 +92,8 @@ def main():
         cfg["data_statistics"] = None
         cfg["seed"] = 1234
         cfg["batch_size"] = args.batch_size
-        cfg["train_filelist_path"] = str(os.path.join(root_path, cfg["train_filelist_path"]))
-        cfg["valid_filelist_path"] = str(os.path.join(root_path, cfg["valid_filelist_path"]))
+        cfg["train_filelist_path"] = str(cfg["train_filelist_path"])
+        cfg["valid_filelist_path"] = str(cfg["valid_filelist_path"])
 
     text_mel_datamodule = TextMelDataModule(**cfg)
     text_mel_datamodule.setup()
